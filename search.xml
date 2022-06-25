@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo写作及更新</title>
-    <url>/2022/06/23/Hexo%E5%86%99%E4%BD%9C%E5%8F%8A%E6%9B%B4%E6%96%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
-  </entry>
-  <entry>
     <title>Hexo搭建及部署</title>
     <url>/2022/06/23/Hexo%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%83%A8%E7%BD%B2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
@@ -97,5 +92,10 @@
       <tags>
         <tag>Hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hexo写作及更新</title>
+    <url>/2022/06/23/Hexo%E5%86%99%E4%BD%9C%E5%8F%8A%E6%9B%B4%E6%96%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>]]></content>
   </entry>
 </search>
