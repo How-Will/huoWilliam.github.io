@@ -8,8 +8,9 @@ subtitle: ''
 description: To find each other and feel, that is the purpose of LIFE. 
 keywords:
 author: William
-language: en
+language: zh-CN
 timezone: Asia/Shanghai
+email: huo843435402@gmail.com
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -40,7 +41,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -97,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -105,3 +106,13 @@ deploy:
   type: git
   repo: https://github.com/huoWilliam/huoWilliam.github.io.git
   branch: main
+
+# Search
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+
+# aplayer:
+#   asset_inject: false
