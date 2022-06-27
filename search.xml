@@ -158,10 +158,11 @@
 </div></div></div>
 
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>目的：由于利用 conda 创建了多个虚拟环境，本文记录管理这些环境所用到的各种指令 参考链接：</p>
+<p>参考链接：</p>
 <ul>
 <li><a href="https://www.jianshu.com/p/2f3be7781451">Anaconda使用总结 - 简书 (jianshu.com)</a></li>
 </ul>
+<p>目的：由于利用 conda 创建了多个虚拟环境，本文记录管理这些环境所用到的各种指令 </p>
 </blockquote>
 <h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><ol>
 <li><p>列出当前系统下的环境</p>
