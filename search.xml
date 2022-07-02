@@ -191,6 +191,48 @@ X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)}
       </tags>
   </entry>
   <entry>
+    <title>Python | conda环境管理</title>
+    <url>/2022/06/27/Python-conda%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-29</p>
+</div></div><div class='timeline-item-content'><p>重命名，并修改bug</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-27</p>
+</div></div><div class='timeline-item-content'><p>完成写作并上传</p>
+</div></div></div>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/2f3be7781451">Anaconda使用总结 - 简书 (jianshu.com)</a></li>
+</ul>
+<p>目的：由于利用 conda 创建了多个虚拟环境，本文记录管理这些环境所用到的各种指令 </p>
+</blockquote>
+<h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><ol>
+<li><p>列出当前系统下的环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建新的环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 指定python版本为3.8，注意至少需要指定python版本或者要安装的包</span></span><br><span class="line"><span class="comment"># 后一种情况下，自动安装最新python版本</span></span><br><span class="line">$ conda create -n env_name python=3.8</span><br><span class="line"><span class="comment"># 同时安装必要的包</span></span><br><span class="line">$ conda create -n env_name numpy matplotlib python=3.8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>环境激活/关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到新环境</span></span><br><span class="line"><span class="comment"># linux/Mac下需要使用source activate env_name</span></span><br><span class="line">$ activate env_name</span><br><span class="line"><span class="comment">#退出环境，也可以使用`activate root`切回root环境</span></span><br><span class="line">$ deactivate env_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda remove -n env_name --all</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>用户安装的不同python环境都会被放在目录<code>~/anaconda/envs</code>下</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>Conda</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo | Hexo搭建及部署</title>
     <url>/2022/06/23/Hexo-Hexo%E6%90%AD%E5%BB%BA%E5%8F%8A%E9%83%A8%E7%BD%B2/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
@@ -286,48 +328,6 @@ X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)}
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python | conda环境管理</title>
-    <url>/2022/06/27/Python-conda%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
-</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-29</p>
-</div></div><div class='timeline-item-content'><p>重命名，并修改bug</p>
-</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-27</p>
-</div></div><div class='timeline-item-content'><p>完成写作并上传</p>
-</div></div></div>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>参考链接：</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/2f3be7781451">Anaconda使用总结 - 简书 (jianshu.com)</a></li>
-</ul>
-<p>目的：由于利用 conda 创建了多个虚拟环境，本文记录管理这些环境所用到的各种指令 </p>
-</blockquote>
-<h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><ol>
-<li><p>列出当前系统下的环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建新的环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 指定python版本为3.8，注意至少需要指定python版本或者要安装的包</span></span><br><span class="line"><span class="comment"># 后一种情况下，自动安装最新python版本</span></span><br><span class="line">$ conda create -n env_name python=3.8</span><br><span class="line"><span class="comment"># 同时安装必要的包</span></span><br><span class="line">$ conda create -n env_name numpy matplotlib python=3.8</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>环境激活/关闭</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到新环境</span></span><br><span class="line"><span class="comment"># linux/Mac下需要使用source activate env_name</span></span><br><span class="line">$ activate env_name</span><br><span class="line"><span class="comment">#退出环境，也可以使用`activate root`切回root环境</span></span><br><span class="line">$ deactivate env_name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda remove -n env_name --all</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>用户安装的不同python环境都会被放在目录<code>~/anaconda/envs</code>下</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>Conda</tag>
-        <tag>Python</tag>
       </tags>
   </entry>
 </search>
