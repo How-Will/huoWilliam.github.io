@@ -4,31 +4,42 @@
     <title>DeepLearning|神经网络与深度学习</title>
     <url>/2022/06/29/DeepLearning-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
-</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-29</p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>07-01</p>
+</div></div><div class='timeline-item-content'><p>完成笔记整理</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-29</p>
 </div></div><div class='timeline-item-content'><p>整理到了逻辑回归的损失函数</p>
 </div></div></div>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://xie.infoq.cn/article/2d4ffe7bb8f7fadaa7aec35f8">吴恩达推荐笔记：22张图总结深度学习全部知识<em>学习</em>程序员生活志_InfoQ写作社区</a></li>
+<li><a href="https://github.com/fengdu78/deeplearning_ai_books">fengdu78/deeplearning_ai_books: deeplearning.ai（吴恩达老师的深度学习课程笔记及资源） (github.com)</a></li>
+<li><a href="https://www.deeplearningai.net/specializationDetail/Deep_Learning_Specialization">DeepLearning.AI中国官网 - 深度学习专业 (deeplearningai.net)</a></li>
+</ul>
+<p>目的：学习吴恩达老师深度学习课程第一课《神经网络与深度学习》过程中，将所得总结成该笔记。有助于后期温习。</p>
+</blockquote>
 <h1 id="第一门课：神经网络与深度学习"><a href="#第一门课：神经网络与深度学习" class="headerlink" title="第一门课：神经网络与深度学习"></a>第一门课：神经网络与深度学习</h1><h2 id="第一周：Introduction-to-Deep-Learning"><a href="#第一周：Introduction-to-Deep-Learning" class="headerlink" title="第一周：Introduction to Deep Learning"></a>第一周：Introduction to Deep Learning</h2><h3 id="1-1-Welcome"><a href="#1-1-Welcome" class="headerlink" title="1.1 Welcome"></a>1.1 Welcome</h3><ol>
-<li>神经网络与深度学习：学习如何建立神经网络，以及如何在训练</li>
+<li>神经网络与深度学习：学习如何建立神经网络，以及如何训练</li>
 <li>改善深层神经网络：学习超参数调整、正则化、诊断偏差和方差以及一些高级优化算法</li>
 <li>搭建机器学习项目：学习如何搭建机器学习项目</li>
 <li>CNN：学习如何构建 CNN</li>
 <li>序列模型：学习序列模型，以及如何将其应用于自然语言处理</li>
 </ol>
 <h3 id="1-2-What-is-a-Neural-Network"><a href="#1-2-What-is-a-Neural-Network" class="headerlink" title="1.2 What is a Neural Network"></a>1.2 What is a Neural Network</h3><p>NN 相当于一个函数 $\hat y = f(x)$，只要将特征向量 $x$ 输入到模型 $f(\centerdot)$ 中，就能输出预测值 $\hat y$。</p>
-<p>以房价预测为例，area，bedrooms，location 和 wealth 决定了该房子的价值。所以构建一个有4个输入特征的 NN。只要将对应的特征输入到模型中，就能预测对应的房价。<strong>但是要经过一定的训练才能得到理想的精度。</strong></p>
+<p>以房价预测为例，area，bedrooms，location 和 wealth 决定了该房子的价值。所以构建一个有4个输入特征的 NN。只要将相关的特征输入到模型中，就能预测对应的房价。<strong>但是要经过一定的训练才能得到理想的精度。</strong></p>
 <p><img src="Untitled.png" alt="Untitled" style="zoom: 80%;" /></p>
 <p>模型的中间结点和所有输入特征相连，通过训练，这些特征结点可以调节和每个输入特征之间的相关联性大小。比如第一个结点可能代表家庭人口，而家庭人口取决于 size 和 bedrooms，而和 location 和 wealth 不相干。 </p>
-<h3 id="1-3-Supervised-Learning-with-Neural-Networks"><a href="#1-3-Supervised-Learning-with-Neural-Networks" class="headerlink" title="1.3 Supervised Learning with Neural Networks"></a>1.3 Supervised Learning with Neural Networks</h3><p>监督学习，即所有输入数据都有确定的对应输出数据，在各种网络架构中，输入数据和输出数据的节点层都位于网络的两端，训练过程就是不断地调整它们之间的网络连接权重。</p>
-<p><img src="Untitled 1.png" alt="Untitled" style="zoom:67%;" /></p>
+<h3 id="1-3-Supervised-Learning-with-Neural-Networks"><a href="#1-3-Supervised-Learning-with-Neural-Networks" class="headerlink" title="1.3 Supervised Learning with Neural Networks"></a>1.3 Supervised Learning with Neural Networks</h3><p><strong>监督学习，即所有输入数据都有确定的对应输出数据</strong>，在各种网络架构中，输入数据和输出数据的节点层都位于网络的两端，训练过程就是不断地调整它们之间的网络连接权重。</p>
+<p><img src="Untitled 1.png" alt="Untitled" style="zoom:80%;" /></p>
 <p>有多种不同架构的监督学习，比如标准的 NN 可用于训练房子特征和房价之间的函数，CNN 可用于训练图像和类别之间的函数，RNN 可用于训练语音和文本之间的函数。他们的模型架构如上图所示。</p>
-<p><img src="Untitled 2.png" alt="Untitled" style="zoom:67%;" /></p>
+<p><img src="Untitled 2.png" alt="Untitled" style="zoom: 67%;" /></p>
 <h3 id="1-4-Why-is-Deep-Learning-taking-off"><a href="#1-4-Why-is-Deep-Learning-taking-off" class="headerlink" title="1.4 Why is Deep Learning taking off?"></a>1.4 Why is Deep Learning taking off?</h3><p><img src="Untitled 3.png" alt="Untitled" style="zoom: 67%;" /></p>
 <p>深度学习能发展起来主要是由于大数据的出现。</p>
 <p>在小规模的数据量下，模型的性能取决于个人的特征工程能力。而随着数据量的不断增大，神经网络的优势就愈发明显了。从图中可以看出，随着规模【数据规模，网络规模】的不断扩大，神经网络的性能越来越好。</p>
-<p>因此为了更好的性能，人们要么训练一个更大的神经网络，要么投入更多的数据。但是 labeled data 总是有限的。但是一个更大的神经网络意味着更长的训练时间，因此目前的许多算法都是在提升神经网络的运行速度。</p>
-<p>例如新型激活函数的出现，因为sigmoid 函数在正无穷处和负无穷处会出现趋于零的导数，这正是梯度消失导致训练缓慢甚至失败的主要原因。<strong>而用 ReLU 函数替换 sigmoid 函数可以在反向传播中保持快速的梯度下降过程。</strong>要研究深度学习，需要学会「idea—代码—实验—idea」的良性循环。</p>
+<p>因此为了更好的性能，人们要么训练一个更大的神经网络，要么投入更多的数据。但是 labeled data 总是有限的，因此目前人们倾向于训练出更大的 NN。但是一个更大的神经网络意味着更长的训练时间，因此目前的许多算法都是在提升神经网络的运行速度。</p>
+<p>例如新型激活函数的出现，因为sigmoid 函数在正无穷处和负无穷处会出现趋于零的导数，这正是梯度消失导致训练缓慢甚至失败的主要原因。<strong>而用 ReLU 函数替换 sigmoid 函数可以在反向传播中保持快速的梯度下降过程。</strong>要研究深度学习，需要学会「idea — 代码 — 实验 — idea」的良性循环。</p>
 <h2 id="第二周：Basics-of-Neural-Network-programming"><a href="#第二周：Basics-of-Neural-Network-programming" class="headerlink" title="第二周：Basics of Neural Network programming"></a>第二周：Basics of Neural Network programming</h2><h3 id="2-1-Binary-Classification"><a href="#2-1-Binary-Classification" class="headerlink" title="2.1 Binary Classification"></a>2.1 Binary Classification</h3><p><img src="Untitled 4.png" alt="Untitled" style="zoom:67%;" /></p>
-<p>关于二分类问题，以判断一张图像是不是猫为例子，以一张图像作为模型的输入，如果该图像是猫，则输出1，否则输出0。<strong>Logistic Regression 是解决二分类问题的一种常见算法。</strong></p>
+<p>关于二分类问题，可以以判断一张图像是不是猫为例子。将一张图像作为模型的输入，如果该图像是猫，则输出1，否则输出0。<strong>Logistic Regression 是解决二分类问题的一种常见算法。</strong></p>
 <blockquote>
 <p>符号约定</p>
 <ul>
@@ -41,15 +52,89 @@
 </blockquote>
 <h3 id="2-2-Logistic-Regression-Hypothesis-Function"><a href="#2-2-Logistic-Regression-Hypothesis-Function" class="headerlink" title="2.2 Logistic Regression Hypothesis Function"></a>2.2 Logistic Regression Hypothesis Function</h3><p><img src="Untitled 5.png" alt="Untitled" style="zoom:80%;" /></p>
 <p>我们可以将 logistic 回归看成将两组数据点分离的问题，如果仅有线性回归（激活函数为线性），则对于非线性边界的数据点（例如，一组数据点被另一组包围）是无法有效分离的，因此在这里需要用非线性激活函数替换线性激活函数。</p>
-<p>关于识别一张图片是否为猫的问题，我们使用逻辑回归，将特征向量 $X$ 输入模型后，输出预测值 $\hat y$，表示对实际值 $y$ 的估计。<strong>即 $\hat y$ 表示 $y$ 等于1的概率</strong>。</p>
-<p>如果将假设函数设为 $\hat{y}=w^{T} x+b$ ，其中 $w$ 表示模型参数，$b$ 表示偏差。但是该假设函数得到的输出范围可能大于1，或小于0。不符合概率的定义，所以需要对其附加 sigmoid 函数。</p>
-<h3 id="2-3-Logistic-Regression-Cost-Function"><a href="#2-3-Logistic-Regression-Cost-Function" class="headerlink" title="2.3 Logistic Regression Cost Function"></a>2.3 Logistic Regression Cost Function</h3>]]></content>
+<p>关于识别一张图片是否为猫的问题，我们使用逻辑回归，将特征向量 $X$ 【将图片 <code>reshape</code> 成向量】输入模型后，输出预测值 $\hat y$，表示对实际值 $y$ 的估计。<strong>令 $\hat y$ 表示 $y$ 等于1的概率，即 $\hat y = p(y=1|x)$。</strong> </p>
+<p>如果将假设函数设为 $\hat{y}=w^{T} x+b$ ，其中 $w$ 表示模型参数，$b$ 表示偏差。但是该假设函数得到的输出范围可能大于1，或小于0。不符合概率的定义，所以需要对其附加 sigmoid 函数。于是 Logistics Regression 的假设函数应该为 $\hat{y}=\sigma \left(w^{T} x+b\right)$</p>
+<h3 id="2-3-Logistic-Regression-Cost-Function"><a href="#2-3-Logistic-Regression-Cost-Function" class="headerlink" title="2.3 Logistic Regression Cost Function"></a>2.3 Logistic Regression Cost Function</h3><p><img src="Untitled 6.png" alt="Untitled" style="zoom:67%;" /></p>
+<p>神经网络的训练目标是确定最合适的权重 w 和偏置项 b，那这个过程是怎么样的呢？</p>
+<p>这其实就是一个优化问题，优化过程的目的是使预测值 $\hat y$ 更加接近真实值 $y$ 。形式上可以通过寻找目标函数的最小值来实现。所以我们首先确定目标函数（损失函数、代价函数）的形式，然后用梯度下降逐步更新 $w$，$b$，当目标函数达到最小值或者足够小时，我们就能获得很好的预测结果。</p>
+<p>Logistic Regression 中用到的损失函数是：$L(\hat{y}, y)=-y \log (\hat{y})-(1-y) \log (1-\hat{y})$</p>
+<h3 id="2-4-Gradient-Descent"><a href="#2-4-Gradient-Descent" class="headerlink" title="2.4 Gradient Descent"></a>2.4 Gradient Descent</h3><p><img src="Untitled 7.png" alt="Untitled" style="zoom:80%;" /></p>
+<ol>
+<li><strong>首先初始化 $w$，$b$。</strong>由于 Logistics Regression 的代价函数是凸函数，所以无论在哪里初始化，都可以到达最低点。</li>
+<li><strong>找到下坡的方向【求梯度】后，以固定的学习率 $\alpha$ 不断地迭代。</strong></li>
+<li><strong>直到到达全局最优解或者接近全局最优解的地方</strong>。</li>
+</ol>
+<p>用公式来说明：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}
+w:=w-\alpha \frac{\partial J(w, b)}{\partial w} \\
+b:=b-\alpha \frac{\partial J(w, b)}{\partial b}
+\end{array}</script><p>其中学习率的大小可以决定收敛的速度和最终结果。</p>
+<p>学习率较大时，初期收敛很快，不易停留在局部极小值，但后期难以收敛到稳定的值；学习率较小时，情况刚好相反。一般而言，我们希望训练初期学习率较大，后期学习率较小。</p>
+<h3 id="2-5-Derivatives"><a href="#2-5-Derivatives" class="headerlink" title="2.5 Derivatives"></a>2.5 Derivatives</h3><p>导数其实相当于函数的斜率。</p>
+<p>以函数 $f(a)=3a$ 为例。导数的数学定义就是将 $a$ 右移无限小的距离，$f(a)$ 增加了3倍于 $a$ 右移的距离的值。所以 $\frac{d f(a)}{d a}=3$。</p>
+<h3 id="2-6-More-Derivative-Examples"><a href="#2-6-More-Derivative-Examples" class="headerlink" title="2.6 More Derivative Examples"></a>2.6 More Derivative Examples</h3><p>导数就是斜率，而函数的斜率，在不同的点是不同的。对于函数 $f(a) = a^2$，或者$f(a)=\log{a}$，它们的斜率是变化的，所以它们的导数或者斜率，在曲线上不同的点处是不同的。</p>
+<h3 id="2-7-Computation-Graph"><a href="#2-7-Computation-Graph" class="headerlink" title="2.7 Computation Graph"></a>2.7 Computation Graph</h3><p><img src="Untitled 8.png" alt="Untitled"></p>
+<p>上图是函数 $J=3\left(a+bc\right)$ 的计算图。假设 $a=5$，$b=3$，$c=2$。</p>
+<p>通过上图可以看出，<strong>通过一个前向传播的过程，可以计算 $J$ 的值。再通过一个反向传播的过程，计算梯度</strong>。</p>
+<h3 id="2-8-Derivatives-with-a-Computation-Graph"><a href="#2-8-Derivatives-with-a-Computation-Graph" class="headerlink" title="2.8 Derivatives with a Computation Graph"></a>2.8 Derivatives with a Computation Graph</h3><p><img src="Untitled 9.png" alt="Untitled"></p>
+<p>函数 $J=3\left(a+bc\right)$ 。假设要计算 $\frac{d J}{d b}$，根据从左到右的方向传播箭头开始计算。</p>
+<ol>
+<li>先计算 $\frac{d J}{d v}$，按照导数的计算方法，得到 $\frac{d J}{d v}=3$ </li>
+<li>再计算$\frac{d J}{d u} = \frac{d J}{d v} \cdot \frac{d v}{d u} = 3 \cdot \frac{d v}{d u} = 3 \times 1 = 3$ </li>
+<li>最后计算$\frac{d J}{d b}= \frac{d J}{d u} \cdot \frac{d u}{d b} = 3 \cdot \frac{d u}{d b} = 3 \cdot c = 6$  </li>
+</ol>
+<h3 id="2-9-Logistic-Regression-Gradient-Descent"><a href="#2-9-Logistic-Regression-Gradient-Descent" class="headerlink" title="2.9 Logistic Regression Gradient Descent"></a>2.9 Logistic Regression Gradient Descent</h3><p>对逻辑回归的损失函数，<strong>仅针对一个训练样本</strong>进行梯度下降，过程如下</p>
+<p><img src="Untitled 10.png" alt="Untitled"></p>
+<p>目标是要计算出 $\frac{d L}{d w<em>{1}}$，$\frac{d L}{d w</em>{2}}$，$\frac{d L}{d b}$，然后结合学习率进行更新。反向传播的过程如上图所示，先计算 $\frac{d L}{d a}$，再计算 $\frac{d L}{d z}$，最后根据链式法则能得到$\frac{d L}{d w<em>{1}}=x</em>{1}dz$，$\frac{d L}{d w_{2}}=x_2dz$，$\frac{d L}{d b} = d z$。</p>
+<h3 id="2-10-Gradient-Descent-on-m-Examples"><a href="#2-10-Gradient-Descent-on-m-Examples" class="headerlink" title="2.10 Gradient Descent on m Examples"></a>2.10 Gradient Descent on m Examples</h3><p>对逻辑回归的代价函数，<strong>针对 m 个样本</strong>进行梯度下降，过程如下</p>
+<p>Logistics Regression 的代价函数为 $J(w, b)=\frac{1}{m} \sum \limits<em>{i=1}^ L\left(a^{(i)}, y^{(i)}\right)$ ，其中 $a</em>{i}$，$y<em>{i}$ 分别表示第 i 个样本的预测值和真实值。目标是是计算出 $\frac{d J(w,b)}{d w</em>{1}}$，$\frac{d J(w,b)}{d w_{2}}$，$\frac{d J(w,b)}{d b}$，然后结合学习率进行更新。</p>
+<p>反向传播的过程如下</p>
+<ol>
+<li>先针对第 i 个样本进行梯度下降计算，得到 $\frac{d J(w,b)}{d w<em>{1} ^{i}}$，$\frac{d J(w,b)}{d w</em>{2} ^{i}}$，$\frac{d J(w,b)}{d b ^{i}}$ 【<strong>第一个for循环</strong>】</li>
+<li>分别对总的 m 个样本进行梯度下降计算，然后将得到的梯度求和 $\sum \limits<em>{i=1}^ \frac{d J(w,b)}{d w</em>{1} ^{i}}$，$\sum \limits<em>{i=1}^ \frac{d J(w,b)}{d w</em>{2} ^{i}}$，$\sum \limits_{i=1}^ \frac{d J(w,b)}{d b ^{i}}$ 【<strong>第二个for循环</strong>】</li>
+<li>对上一步得到的梯度和除于 m ，得到 $dw<em>{1} = \frac{d J(w,b)}{d w</em>{1}}$，$dw<em>{2} =\frac{d J(w,b)}{d w</em>{2}}$，$db = \frac{d J(w,b)}{d b}$ </li>
+<li>然后结合学习率进行更新</li>
+<li>重复上述过程，直到得到合适的参数【<strong>迭代次数，这个循环无法除去</strong>】</li>
+</ol>
+<h3 id="2-11-Vectorization"><a href="#2-11-Vectorization" class="headerlink" title="2.11 Vectorization"></a>2.11 Vectorization</h3><p>向量化可以提升速度，比如计算两个向量之间的点积。</p>
+<p>如果使用 for 循环遍历每个元素速度很慢，使用 numpy 提供的 <code>[np.dot](http://np.dot)</code> 进行向量化运算，可以提高速度。</p>
+<h3 id="2-12-More-Examples-of-Vectorization"><a href="#2-12-More-Examples-of-Vectorization" class="headerlink" title="2.12 More Examples of Vectorization"></a>2.12 More Examples of Vectorization</h3><p>当你想写循环时候，检查 <strong>numpy</strong> 是否存在类似的内置函数，从而避免使用循环方式。</p>
+<h3 id="2-13-Vectorizing-Logistic-Regression"><a href="#2-13-Vectorizing-Logistic-Regression" class="headerlink" title="2.13 Vectorizing Logistic Regression"></a>2.13 Vectorizing Logistic Regression</h3><p>之前需要使用 for 循环针对每个样本分别进行前向传播，得到预测值。</p>
+<p>但是可以借助向量化的方式，摆脱 for 循环。</p>
+<p>假设 $a^{(i)}$ 表示第 i 个样本的预测值，它的公式为 $a^{(i)} = \sigma \left(z^{(i)}\right)$，其中 $z^{(i)}=w^{T} x^{(i)}+b$ ，$x^{(i)} \in R^{1 \times n<em>{x}}$，表示第 i 个样本的输入，$w^T \in R ^{1 \times n</em>{x}}$，$b \in R$ 是要优化的参数。</p>
+<p>可以将 m 个样本输入 $x$ 进行堆叠，得到一个输入矩阵 $X \in R ^{n_{x} \times m}$：</p>
+<script type="math/tex; mode=display">
+X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)} & \cdots & x^{(m)} \\    \vdots & \vdots & \vdots & \vdots \end{bmatrix}</script><p>初始化一个向量 $Z = \left[z^{(1)} ,z^{(2)} ,\ldots ,z^{(m)}\right]$，令 $Z = w^{T} X+b=\left[w^{T} x^{(1)}+b, w^{T} x^{(2)}+b, \ldots, w^{T} x^{(m)}+b\right]$，$Z \in R ^{1 \times m}$。【<strong>这里对 $b$ 的运算用到了广播机制</strong>】</p>
+<p>再初始化一个向量 $A = \left[a^{(1)} ,a^{(2)} ,\ldots ,a^{(m)}\right]$，令 $A = \sigma \left( Z\right) = \sigma \left( w^{T}  X+b \right)=\left[\sigma \left( w^{T} x^{(1)}+b \right), \sigma \left( w^{T} x^{(2)}+b \right), \ldots, \sigma \left( w^{T} x^{(m)}+b \right)\right]$，$A \in R ^{1 \times m}$。</p>
+<p>可以看出 $A$ 中的每一个元素就是每一个样本输入的预测值。<strong>从而摆脱了第一个 for 循环</strong>。</p>
+<h3 id="2-14-Vectorizing-Logistic-Regression’s-Gradient"><a href="#2-14-Vectorizing-Logistic-Regression’s-Gradient" class="headerlink" title="2.14 Vectorizing Logistic Regression’s Gradient"></a>2.14 Vectorizing Logistic Regression’s Gradient</h3><p>对每一个样本输入的梯度进行求和后取平均，产生了第二个 for 循环。</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}d w=0 \\d w+=x^{(1)} * d z^{(1)} \\d w+=x^{(2)} * d z^{(2)} \\ \cdots \\d w+=x^{(m)} * d z^{(m)} \\d w=\frac{d w}{m} \\\\db=0 \\d b+=d z^{(1)} \\d b+=d z^{(2)} \\ \cdots \\ d b+=dz^{(m)} \\d b=\frac{d b}{m}\end{array}</script><p>利用向量化的方式可以去掉该循环。</p>
+<p>因为 $d b=\frac{1}{m} \sum_{i=1}^{m} d z^{(i)}$ ，所以 $d b=\frac{1}{m} * n p . \operatorname{sum}(d Z)$。 </p>
+<p>因为 $d w= \frac{1}{m} <em>\left(x^{(1)} d z^{(1)}+x^{(2)} d z^{(2)}+\ldots+x^{m} d z^{m}\right)$，所以 $X = \frac{1}{m} </em> X * d Z^{T}$。</p>
+<p>所以逻辑回归中一次梯度下降更新的向量化实现版本如下：</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}Z=w^{T} X+b=n p \cdot d o t(w \cdot T, X)+b \\A=\sigma(Z) \\d Z=A-Y \\d w=\frac{1}{m} * X * d Z^{T} \\d b=\frac{1}{m} * n p \cdot \operatorname{sum}(d Z) \\w:=w-a * d w \\b:=b-a * d b\end{array}</script><p>Logistic Regression 的总体过程如下图所示</p>
+<p><img src="Untitled 11.png" alt="Untitled" style="zoom:67%;" /></p>
+<h3 id="2-15-Broadcasting-in-Python"><a href="#2-15-Broadcasting-in-Python" class="headerlink" title="2.15 Broadcasting in Python"></a>2.15 Broadcasting in Python</h3><p><img src="Untitled 12.png" alt="Untitled"></p>
+<p><strong>如果两个数组的后缘维度（即矩阵维度元组中最后一个位置的值，shape[-1]）的轴长度相符或其中一方的轴长度为1，则认为它们是广播兼容的。广播会在缺失维度和轴长度为1的维度上进行。</strong></p>
+<h3 id="2-16-A-note-on-python-or-numpy-vectors"><a href="#2-16-A-note-on-python-or-numpy-vectors" class="headerlink" title="2.16 A note on python or numpy vectors"></a>2.16 A note on python or numpy vectors</h3><ol>
+<li><p>不要使用一维数组，改用行向量/列向量代替。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])  <span class="comment"># a.shape=(3,), 这是一维数组</span></span><br><span class="line"><span class="comment"># a.T 与 a 一摸一样</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 改用</span></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]])  <span class="comment"># a.shape=(1, 3), 这是行向量</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不知道一个向量的维度的时候，使用断言语句进行判断。</p>
+</li>
+<li><p>为了确保你的矩阵或向量所需要的维数时，不要羞于 <strong><code>reshape</code></strong> 操作</p>
+</li>
+</ol>
+]]></content>
       <categories>
         <category>deep learning</category>
       </categories>
       <tags>
-        <tag>deep learning</tag>
-        <tag>andrew Ng</tag>
+        <tag>deep_learning</tag>
+        <tag>Andrew_Ng</tag>
       </tags>
   </entry>
   <entry>
@@ -99,53 +184,10 @@
 </ol>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>blog</category>
       </categories>
       <tags>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Python | conda环境管理</title>
-    <url>/2022/06/27/Python-conda%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
-</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-29</p>
-</div></div><div class='timeline-item-content'><p>重命名，并修改bug</p>
-</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-27</p>
-</div></div><div class='timeline-item-content'><p>完成写作并上传</p>
-</div></div></div>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
-<p>参考链接：</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/2f3be7781451">Anaconda使用总结 - 简书 (jianshu.com)</a></li>
-</ul>
-<p>目的：由于利用 conda 创建了多个虚拟环境，本文记录管理这些环境所用到的各种指令 </p>
-</blockquote>
-<h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><ol>
-<li><p>列出当前系统下的环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建新的环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 指定python版本为3.8，注意至少需要指定python版本或者要安装的包</span></span><br><span class="line"><span class="comment"># 后一种情况下，自动安装最新python版本</span></span><br><span class="line">$ conda create -n env_name python=3.8</span><br><span class="line"><span class="comment"># 同时安装必要的包</span></span><br><span class="line">$ conda create -n env_name numpy matplotlib python=3.8</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>环境激活/关闭</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到新环境</span></span><br><span class="line"><span class="comment"># linux/Mac下需要使用source activate env_name</span></span><br><span class="line">$ activate env_name</span><br><span class="line"><span class="comment">#退出环境，也可以使用`activate root`切回root环境</span></span><br><span class="line">$ deactivate env_name</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda remove -n env_name --all</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>用户安装的不同python环境都会被放在目录<code>~/anaconda/envs</code>下</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>python</category>
-      </categories>
-      <tags>
-        <tag>deep learning</tag>
-        <tag>conda</tag>
-        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -240,10 +282,52 @@
 </ol>
 ]]></content>
       <categories>
-        <category>hexo</category>
+        <category>blog</category>
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python | conda环境管理</title>
+    <url>/2022/06/27/Python-conda%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
+</div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-29</p>
+</div></div><div class='timeline-item-content'><p>重命名，并修改bug</p>
+</div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>06-27</p>
+</div></div><div class='timeline-item-content'><p>完成写作并上传</p>
+</div></div></div>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/2f3be7781451">Anaconda使用总结 - 简书 (jianshu.com)</a></li>
+</ul>
+<p>目的：由于利用 conda 创建了多个虚拟环境，本文记录管理这些环境所用到的各种指令 </p>
+</blockquote>
+<h1 id="记录"><a href="#记录" class="headerlink" title="记录"></a>记录</h1><ol>
+<li><p>列出当前系统下的环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda <span class="built_in">env</span> list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建新的环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 指定python版本为3.8，注意至少需要指定python版本或者要安装的包</span></span><br><span class="line"><span class="comment"># 后一种情况下，自动安装最新python版本</span></span><br><span class="line">$ conda create -n env_name python=3.8</span><br><span class="line"><span class="comment"># 同时安装必要的包</span></span><br><span class="line">$ conda create -n env_name numpy matplotlib python=3.8</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>环境激活/关闭</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到新环境</span></span><br><span class="line"><span class="comment"># linux/Mac下需要使用source activate env_name</span></span><br><span class="line">$ activate env_name</span><br><span class="line"><span class="comment">#退出环境，也可以使用`activate root`切回root环境</span></span><br><span class="line">$ deactivate env_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda remove -n env_name --all</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<blockquote>
+<p>用户安装的不同python环境都会被放在目录<code>~/anaconda/envs</code>下</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>conda</tag>
+        <tag>python</tag>
       </tags>
   </entry>
 </search>
