@@ -1,10 +1,26 @@
 ---
-title: Hexo搭建及部署
+title: Hexo | Hexo搭建及部署
 date: 2022-06-23 19:27:34
-tags: Hexo
-indexing: true
-cover: 
+tags: 
+  - Hexo
+categories: blog
 ---
+
+{% timeline 2022 %}
+
+<!-- timeline 06-29 -->
+
+重命名
+
+<!-- endtimeline -->
+
+<!-- timeline 06-23 -->
+
+完成写作并上传
+
+<!-- endtimeline -->
+
+{% endtimeline %}
 
 # 前言
 

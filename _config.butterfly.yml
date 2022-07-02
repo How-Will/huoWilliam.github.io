@@ -11,7 +11,7 @@ menu:
     # 音乐: /music/ || fas fa-music # 以后在搞吧
     照片: /gallery/ || fas fa-images
     友链: /link/ || fas fa-link
-  关于: /about/ || fas fa-heart
+  Charge: /about/ || fas fa-battery-3
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -63,7 +63,7 @@ local_search:
 
 # MathJax
 mathjax:
-  enable: false
+  enable: true
   per_page: false
 
 # KaTeX
@@ -127,6 +127,13 @@ cover:
     - https://s2.loli.net/2022/06/24/6wRgSA3ZXnj7DNU.png
     - https://s2.loli.net/2022/06/24/PkNSldhBtnw16Mq.png
     - https://s2.loli.net/2022/06/24/LQsaJWOZ31uUkA8.jpg
+    - https://s2.loli.net/2022/06/27/acorYj7qim9GFLl.png
+    - https://s2.loli.net/2022/06/27/vPTm2xeaHYVcLfj.png
+    - https://s2.loli.net/2022/06/27/hzrf9FVWD7GKkXR.jpg
+    - https://s2.loli.net/2022/06/27/7KNaX2e6WzYd4yx.jpg
+    - https://s2.loli.net/2022/06/27/v8ukjDOVl9MZSUY.jpg
+    - https://s2.loli.net/2022/06/27/QoLakKeSCx2pMuW.jpg
+
 
 # Replace Broken Images (替換無法顯示的圖片)
 error_img:
