@@ -64,7 +64,7 @@
 <li><strong>找到下坡的方向【求梯度】后，以固定的学习率 $\alpha$ 不断地迭代。</strong></li>
 <li><strong>直到到达全局最优解或者接近全局最优解的地方</strong>。</li>
 </ol>
-<p>xxxxxxxxxx $ git add . #添加所有文件到暂存区$ git commit -m “新增博客文章”  #提交$ git push origin hexo #推送hexo分支到Githubbash</p>
+<p>用公式来说明：</p>
 <script type="math/tex; mode=display">
 \begin{array}{l}
 w:=w-\alpha \frac{\partial J(w, b)}{\partial w} \\
