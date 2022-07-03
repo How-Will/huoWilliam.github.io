@@ -378,7 +378,7 @@ b:=b-\alpha \frac{\partial J(w, b)}{\partial b}
       </tags>
   </entry>
   <entry>
-    <title>Git|Git大小写不敏感带来的天坑</title>
+    <title>Git | Git大小写不敏感带来的天坑</title>
     <url>/2022/07/03/Git-Git%E5%A4%A7%E5%B0%8F%E5%86%99%E4%B8%8D%E6%95%8F%E6%84%9F%E5%B8%A6%E6%9D%A5%E7%9A%84%E5%A4%A9%E5%9D%91/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="timeline undefined"><div class='timeline-item headline'><div class='timeline-item-title'><div class='item-circle'><p>2022</p>
 </div></div></div><div class='timeline-item'><div class='timeline-item-title'><div class='item-circle'><p>07-03</p>
