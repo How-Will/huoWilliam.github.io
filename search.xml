@@ -64,7 +64,7 @@
 <li><strong>找到下坡的方向【求梯度】后，以固定的学习率 $\alpha$ 不断地迭代。</strong></li>
 <li><strong>直到到达全局最优解或者接近全局最优解的地方</strong>。</li>
 </ol>
-<p>用公式来说明：</p>
+<p>xxxxxxxxxx $ git add . #添加所有文件到暂存区$ git commit -m “新增博客文章”  #提交$ git push origin hexo #推送hexo分支到Githubbash</p>
 <script type="math/tex; mode=display">
 \begin{array}{l}
 w:=w-\alpha \frac{\partial J(w, b)}{\partial w} \\
@@ -132,6 +132,10 @@ X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)}
       <categories>
         <category>deep-learning</category>
       </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Andrew Ng</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hexo | Hexo写作及更新</title>
@@ -182,6 +186,9 @@ X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)}
       <categories>
         <category>blog</category>
       </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hexo | Hexo搭建及部署</title>
@@ -277,6 +284,9 @@ X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)}
       <categories>
         <category>blog</category>
       </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
   </entry>
   <entry>
     <title>Python | conda环境管理</title>
@@ -315,5 +325,9 @@ X = \begin{bmatrix}    \vdots & \vdots & \vdots & \vdots \\    x^{(1)} & x^{(2)}
       <categories>
         <category>python</category>
       </categories>
+      <tags>
+        <tag>Conda</tag>
+        <tag>Python</tag>
+      </tags>
   </entry>
 </search>
