@@ -80,7 +80,7 @@ categories: blog
 
 4. 将 Hexo 项目部署到 Github 上
    
-   - 创建 github 仓库。仓库名必须为 `<你的 GitHub 用户名>.github.io`
+   - xxxxxxxxxx $ git add -A （此命令用来添加所有文件到暂存区）$ git commit -m "新增博客文章"  （此命令用来提交，双引号内可自定义内容，双引号前有空格）$ git push origin hexo （此命令用来推送hexo分支到Github）bash
    
    - 由于 Github Pages 只支持静态文件，所以先生成静态文件。执行如下命令
      
