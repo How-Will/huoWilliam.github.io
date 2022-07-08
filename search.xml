@@ -499,7 +499,7 @@ b:=b-\alpha \frac{\partial J(w, b)}{\partial b}
 <p>为了确保你的矩阵或向量所需要的维数时，不要羞于 <strong><code>reshape</code></strong> 操作</p>
 </li>
 </ol>
-<h1>第三周：浅层神经网络</h1>
+<h1>第三周：Shallow Neural Networks</h1>
 <h2 id="Neural-Network-Overview">Neural Network Overview</h2>
 <p>可以将多个 sigmoid 单元堆叠起来形成一个神经网络。</p>
 <p>![Untitled](Untitled 13.png)</p>
@@ -806,11 +806,62 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>前言</h1>
 <blockquote>
 <p>参考链接：</p>
+<ul>
+<li><a href="https://www.dongchedi.com/article/7025549772580815363">携程、神州、一嗨三大租车平台对比：租车费用、车况、便捷度哪家强？_懂车帝 (dongchedi.com)</a></li>
+</ul>
 <p>目的 ：和宝贝的第一次远行，前往平潭，离台湾最近的岛屿。虽然还是在市内，但是比起之前常去的旗山湖公园，那还是远太多了💕。本次打算在那里玩2天，自驾前往，所以提前做份攻略吧，省的手忙脚乱。</p>
 </blockquote>
 <h1>租车攻略</h1>
+<h2 id="租车平台选择">租车平台选择</h2>
+<p>租车平台有三种类型，平台自营【一嗨，神州】，平台商家合作【携程，飞猪，美团等】，平台个人合作【凹凸】。</p>
+<p>通过分析对比，平台自营的租车服务更加友好。21世纪什么最重要？服务！！！</p>
+<p>而神舟相比一嗨，车型较少，价格也会高点。并且由于是第一次自驾，想要有倒车影像的车，所在城市的神州门店没有找到理想车辆。</p>
+<p><strong>因此租车平台选择一嗨。</strong></p>
+<h2 id="车辆选择">车辆选择</h2>
+<p>丰田亚洲狮，自动挡，支持倒车影像。</p>
+<blockquote>
+<ul>
+<li>
+<p>P驻车档：进入这个档位时，变速箱锁止机构开始工作，因此需要<strong>在车辆停稳后才能挂入</strong>。</p>
+</li>
+<li>
+<p>R倒车档：此档位用于倒车，在倒车时踩下刹车停稳后才能挂入，行驶过程中是无法挂入的。</p>
+</li>
+<li>
+<p>N空档：<strong>一般用于短时间停车</strong>，此时发动机处于怠速状态。</p>
+</li>
+<li>
+<p>D前进档：车辆最常用的前进挡之一，此档位下变速箱会自动变速。</p>
+</li>
+<li>
+<p>S运动档：变速箱换挡延迟，发动机转速变高以获得更好的动力响应，<strong>运动模式可以用于超车时使用</strong>。</p>
+</li>
+<li>
+<p>L低速档：低速挡是前进挡之一，在长下坡或下陡坡时都可以使用，不过要注意发动机转速不能太高。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="租车流程">租车流程</h2>
 <ol>
-<li>租车</li>
+<li>线上预定
+<ul>
+<li>所需材料：身份证，驾驶证，芝麻信用550分以上</li>
+<li>优惠券：新人首单优惠100【<strong>没用上</strong>】，学生优惠150</li>
+<li>购买保障：</li>
+</ul>
+</li>
+<li>线下取车
+<ul>
+<li>围绕车身拍视频，查看是否有刮损，作为还车验收的时候的证据。</li>
+<li>询问下加油的型号</li>
+</ul>
+</li>
+<li>如期还车
+<ul>
+<li><strong>还车前记得把油加到取车前的油量</strong></li>
+<li>门店验收，费用结算，退还押金</li>
+</ul>
+</li>
 </ol>
 ]]></content>
       <categories>
