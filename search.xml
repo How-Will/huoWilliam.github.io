@@ -850,8 +850,8 @@ c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
 <li>线上预定
 <ul>
 <li>所需材料：身份证，驾驶证，芝麻信用550分以上</li>
-<li>优惠券：新人首单优惠100【<strong>没用上</strong>】，学生优惠150</li>
-<li>购买保障：</li>
+<li>优惠券：<s>新人首单优惠100</s>【<strong>没用上</strong>】，学生优惠150</li>
+<li>购买保障：按需求购买</li>
 </ul>
 </li>
 <li>线下取车
@@ -1095,7 +1095,7 @@ the total message length, which is the objective function to be minimized in eac
 <p>稳定方差</p>
 <ul>
 <li>
-<p>**Why？**因为平稳时间序列【<em>只有数据平稳，才能产生大量稳定的数据用于训练</em>】的前提是方差稳定，所以为了后续的 Deseasonalize 和 Modelling Trend，需要稳定方差。</p>
+<p>Why？因为平稳时间序列【<em>只有数据平稳，才能产生大量稳定的数据用于训练</em>】的前提是方差稳定，所以为了后续的 Deseasonalize 和 Modelling Trend，需要稳定方差。</p>
 </li>
 <li>
 <p>采用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>log</mi><mo>⁡</mo></mrow><annotation encoding="application/x-tex">\log</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span></span></span></span> 转换</p>
@@ -1111,7 +1111,7 @@ the total message length, which is the objective function to be minimized in eac
 <p>使用 STL 函数将所有的时间序列分解为 trend，seasonal part，remainder</p>
 <ul>
 <li>
-<p>**Why？**对时间序列数据 deseasonalize 可以提高预测精度</p>
+<p>Why？对时间序列数据 deseasonalize 可以提高预测精度</p>
 </li>
 <li>
 <blockquote>
@@ -1191,6 +1191,58 @@ L S T M_{\text {out }}^{\text {peephole }} &amp;=h_{t}
       <tags>
         <tag>Time Series Forecasting</tag>
         <tag>Cluster</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Travel | 湄洲岛攻略</title>
+    <url>/2022/07/16/Travel-%E6%B9%84%E6%B4%B2%E5%B2%9B%E6%94%BB%E7%95%A5/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>前言</h1>
+<blockquote>
+<p>目的：之前的前往平潭的计划，由于平潭的疫情，暂时搁浅。转向湄洲岛。</p>
+</blockquote>
+<h1>出行</h1>
+<p>动车前往莆田火车站，在乘坐363路公交车，前往文甲码头，之后坐船到达湄洲岛。<strong>船票是往返票，所以要保存好。</strong></p>
+<blockquote>
+<p>船票可关注公众号”湄洲岛轮渡“，在上面购买船票。这一方面就交给宝贝负责吧。😊</p>
+</blockquote>
+<h1>住宿</h1>
+<p>本次计划在湄洲岛游玩2天，18号下午出发。湄洲岛上宾馆酒店较少，选择民宿。</p>
+<p>由于打算早起看看海边的日出，因此希望住宿靠近海边，最终选定<strong>致青春观景民宿</strong>这家，房型选择<strong>观景大床房</strong>【￥195】。</p>
+<blockquote>
+<p>酒店提供码头接送服务，联系电话：<strong>18950740351</strong>。<br>
+<strong>酒店要求7天内的核酸报告，要记得去做</strong>。</p>
+</blockquote>
+<h1>游玩</h1>
+<p>游玩出行方面选择<strong>电瓶车租借【￥80/day，小贵】</strong>。毕竟在环岛路上骑车吹海风的感觉没人不想体会。</p>
+<p>计划观光线路如下：</p>
+<ol>
+<li>19号
+<ul>
+<li>5:00，起床看日出【听说湄海潮音的日出很好看，起得来的话就去】</li>
+<li>9:00~11:00，鹅尾神石园</li>
+<li>17:00~17:50，彩虹街道</li>
+<li>18:00~19:00，黄金沙滩看日落</li>
+<li>20:00~21:00，环岛东路【晚饭后吹风】</li>
+</ul>
+</li>
+<li>20号
+<ul>
+<li>9:00~11:00，妈祖庙</li>
+<li>17:00~18:00，莲池奥沙滩</li>
+</ul>
+</li>
+</ol>
+<h1>吃食</h1>
+<p>不清楚，上了岛再看吧。</p>
+<blockquote>
+<p>听说可以自己买食材，交给饭店老板处理，要付加工费。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>life</category>
+      </categories>
+      <tags>
+        <tag>Travel</tag>
       </tags>
   </entry>
 </search>
