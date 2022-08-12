@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Pytorch | One-Dimensional Tensors | AFTech</title><meta name="keywords" content="Deep Learning"><meta name="author" content="William,huo843435402@gmail.com"><meta name="copyright" content="William"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言  参考链接： 目的：张量是 Pytorch 中的重要内容，学习在 Pytorch 中如何操作张量是之后构建深度学习模型的基础  Torch Tensors in 1D  准备工作：   导入必要的包 1234567# These are the libraries will be used for this lab.import torch import numpy as np import">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch | One-Dimensional Tensors">
+<meta property="og:url" content="http://example.com/2022/08/01/Pytorch-One-Dimensional-Tensors/index.html">
+<meta property="og:site_name" content="AFTech">
+<meta property="og:description" content="前言  参考链接： 目的：张量是 Pytorch 中的重要内容，学习在 Pytorch 中如何操作张量是之后构建深度学习模型的基础  Torch Tensors in 1D  准备工作：   导入必要的包 1234567# These are the libraries will be used for this lab.import torch import numpy as np import">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/06/24/6wRgSA3ZXnj7DNU.png">
+<meta property="article:published_time" content="2022-08-01T04:00:07.000Z">
+<meta property="article:modified_time" content="2022-08-01T10:01:16.732Z">
+<meta property="article:author" content="William">
+<meta property="article:tag" content="Deep Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/06/24/6wRgSA3ZXnj7DNU.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/01/Pytorch-One-Dimensional-Tensors/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":1,"translateDelay":100,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Pytorch | One-Dimensional Tensors',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-01 18:01:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2022/06/24/OMpjngSGP17uFVY.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-battery-3"></i><span> Charge</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">AFTech</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-heartbeat"></i><span> 娱乐</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-images"></i><span> 照片</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-battery-3"></i><span> Charge</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Pytorch | One-Dimensional Tensors</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-01T04:00:07.000Z" title="发表于 2022-08-01 12:00:07">2022-08-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-01T10:01:16.732Z" title="更新于 2022-08-01 18:01:16">2022-08-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/pytorch/">pytorch</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Pytorch | One-Dimensional Tensors"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1>前言</h1>
+<blockquote>
+<p>参考链接：</p>
+<p>目的：张量是 Pytorch 中的重要内容，学习在 Pytorch 中如何操作张量是之后构建深度学习模型的基础</p>
+</blockquote>
+<h1>Torch Tensors in 1D</h1>
+<blockquote>
+<p>准备工作：</p>
+<ol>
+<li>
+<p>导入必要的包</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># These are the libraries will be used for this lab.</span></span><br><span class="line"><span class="keyword">import</span> torch </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline  </span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>检查 Pytorch 的版本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.__version__</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>将要用到的绘图函数，该函数将会绘制出目标向量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Plot vecotrs, please keep the parameters in the same length</span></span><br><span class="line"><span class="comment"># @param: Vectors = [&#123;&quot;vector&quot;: vector variable, &quot;name&quot;: name of vector, &quot;color&quot;: color of the vector on diagram&#125;]</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">plotVec</span>(<span class="params">vectors</span>):</span><br><span class="line">    ax = plt.axes()</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># For loop to draw the vectors</span></span><br><span class="line">    <span class="keyword">for</span> vec <span class="keyword">in</span> vectors:</span><br><span class="line">        ax.arrow(<span class="number">0</span>, <span class="number">0</span>, *vec[<span class="string">&quot;vector&quot;</span>], head_width = <span class="number">0.05</span>,color = vec[<span class="string">&quot;color&quot;</span>], head_length = <span class="number">0.1</span>)</span><br><span class="line">        plt.text(*(vec[<span class="string">&quot;vector&quot;</span>] + <span class="number">0.1</span>), vec[<span class="string">&quot;name&quot;</span>])</span><br><span class="line">    </span><br><span class="line">    plt.ylim(-<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">    plt.xlim(-<span class="number">2</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<h2 id="Types-and-Shape">Types and Shape</h2>
+<p>构造函数 <code>torch.tensor()</code> 可以使用 Python List 构建 tensor。然后可以查看 tensor 的 <code>dtype</code> 和 <code>type()</code> 。</p>
+<blockquote>
+<p><code>tensor_obj.dtype</code> ：返回 tensor 中每一个元素的类型</p>
+<p><code>tensor_obj.type()</code> ：与 Python 内建 <code>type()</code> 返回的内容不同，它返回 tensor 的具体类型，如 <code>torch.FloatTensor</code> 等</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert a integer list with length 5 to a tensor</span></span><br><span class="line"></span><br><span class="line">ints_to_tensor = torch.tensor([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dtype of tensor object after converting it to tensor: &quot;</span>, ints_to_tensor.dtype)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of tensor object after converting it to tensor: &quot;</span>, ints_to_tensor.<span class="built_in">type</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">type</span>(ints_to_tensor) <span class="comment"># python built-in type method</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert a float list with length 5 to a tensor</span></span><br><span class="line"></span><br><span class="line">floats_to_tensor = torch.tensor([<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dtype of tensor object after converting it to tensor: &quot;</span>,floats_to_tensor.dtype)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of tensor object after converting it to tensor: &quot;</span>, floats_to_tensor.<span class="built_in">type</span>())</span><br></pre></td></tr></table></figure>
+<p><strong>建议要用来构造 tensor 的 List 中的元素都应该是同一种类型的。</strong></p>
+<hr>
+<p>可以强制指定 tensor 的 dtype，做法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">list_floats=[<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>]</span><br><span class="line"></span><br><span class="line">floats_int_tensor=torch.tensor(list_floats,dtype=torch.int64) </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dtype of tensor object is: &quot;</span>, floats_int_tensor.dtype)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of tensor object is: &quot;</span>, floats_int_tensor.<span class="built_in">type</span>())</span><br></pre></td></tr></table></figure>
+<hr>
+<p>**可以看到 <code>torch.tensor()</code> 将 List 转换为 tensor， <code>tensor_obj.type()</code> 返回的内容视 List 中的元素类型而定。**但我们也可以使用指定方法生成指定类型的 tensor。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert a integer list with length 5 to float tensor</span></span><br><span class="line"></span><br><span class="line">new_float_tensor = torch.FloatTensor([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"></span><br><span class="line">new_float_tensor.<span class="built_in">type</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of the new_float_tensor:&quot;</span>, new_float_tensor.<span class="built_in">type</span>())</span><br></pre></td></tr></table></figure>
+<p>也可以使用 <code>tensor_obj.type()</code> ，强制进行 tensor 的类型转换</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Another method to convert the integer list to float tensor</span></span><br><span class="line"></span><br><span class="line">old_int_tensor = torch.tensor([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">new_float_tensor = old_int_tensor.<span class="built_in">type</span>(torch.FloatTensor)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of the new_float_tensor:&quot;</span>, new_float_tensor.<span class="built_in">type</span>())</span><br></pre></td></tr></table></figure>
+<hr>
+<p><code>tensor_obj.size()</code> 可以返回 tensor 的大小。 <code>tensor_obj.ndimension()</code> 返回 tensor 的维度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Introduce the tensor_obj.size() &amp; tensor_ndimension.size() methods</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The size of the new_float_tensor: &quot;</span>, new_float_tensor.size())</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dimension of the new_float_tensor: &quot;</span>,new_float_tensor.ndimension())</span><br></pre></td></tr></table></figure>
+<hr>
+<p><code>tensor_obj.view(row, column)</code> 用于重塑 tensor。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Introduce the tensor_obj.view(row, column) method</span></span><br><span class="line"></span><br><span class="line">twoD_float_tensor = new_float_tensor.view(<span class="number">5</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Original Size: &quot;</span>, new_float_tensor)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Size after view method&quot;</span>, twoD_float_tensor)</span><br></pre></td></tr></table></figure>
+<p>原来的大小是 5。重塑后的 tensor 变成了一个 5X1 的 tensor，类似于一个列向量。 <strong>注意：tensor 中的元素数量在应用 <code>tensor_obj.view()</code> 后必须保持不变。</strong></p>
+<p>通过在 <code>tensor_obj.view()</code> 中指定参数 -1，则会自动推算维度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Introduce the use of -1 in tensor_obj.view(row, column) method</span></span><br><span class="line"></span><br><span class="line">twoD_float_tensor = new_float_tensor.view(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Original Size: &quot;</span>, new_float_tensor)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Size after view method&quot;</span>, twoD_float_tensor)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>numpy array 和 tensor 之间也可以互相转换。</p>
+<p>将 numpy array 转换为 tensor 的方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert a numpy array to a tensor</span></span><br><span class="line"></span><br><span class="line">numpy_array = np.array([<span class="number">0.0</span>, <span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>])</span><br><span class="line">new_tensor = torch.from_numpy(numpy_array)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dtype of new tensor: &quot;</span>, new_tensor.dtype)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of new tensor: &quot;</span>, new_tensor.<span class="built_in">type</span>())</span><br></pre></td></tr></table></figure>
+<p>而将 tensor 转换为 numpy array 的方法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert a tensor to a numpy array</span></span><br><span class="line"></span><br><span class="line">back_to_numpy = new_tensor.numpy()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The numpy array from tensor: &quot;</span>, back_to_numpy)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dtype of numpy array: &quot;</span>, back_to_numpy.dtype)</span><br></pre></td></tr></table></figure>
+<p><code>back_to_numpy</code> 和 <code>new_tensor</code> 此时都指向了 <code>numpy_array</code>。所以如果对 <code>numpy_array</code> 中的元素进行更改，会同时导致 <code>back_to_numpy</code> 和 <code>new_tensor</code> 发生变化。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set all elements in numpy array to zero </span></span><br><span class="line">numpy_array[:] = <span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The new tensor points to numpy_array : &quot;</span>, new_tensor)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;and back to numpy array points to the tensor: &quot;</span>, back_to_numpy)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Pandas series 也可以先转换为 numpy array 后，再进一步转换为 tensor。</p>
+<blockquote>
+<p>通过 <code>pandas_series.values</code> 获取其内部存储的 numpy array。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Convert a panda series to a tensor</span></span><br><span class="line"></span><br><span class="line">pandas_series=pd.Series([<span class="number">0.1</span>, <span class="number">2</span>, <span class="number">0.3</span>, <span class="number">10.1</span>])</span><br><span class="line">new_tensor=torch.from_numpy(pandas_series.values)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The new tensor from numpy array: &quot;</span>, new_tensor)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The dtype of new tensor: &quot;</span>, new_tensor.dtype)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The type of new tensor: &quot;</span>, new_tensor.<span class="built_in">type</span>())</span><br></pre></td></tr></table></figure>
+<hr>
+<p>方法 <code>item()</code> 将 tensor 的值作为标准 Python 数字返回。这仅适用于一个元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this_tensor=torch.tensor([<span class="number">0</span>,<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>]) </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;the first item is given by&quot;</span>,this_tensor[<span class="number">0</span>].item(),<span class="string">&quot;the first tensor value is given by &quot;</span>,this_tensor[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;the second item is given by&quot;</span>,this_tensor[<span class="number">1</span>].item(),<span class="string">&quot;the second tensor value is given by &quot;</span>,this_tensor[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;the third  item is given by&quot;</span>,this_tensor[<span class="number">2</span>].item(),<span class="string">&quot;the third tensor value is given by &quot;</span>,this_tensor[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<hr>
+<p>可以使用方法 <code>tolist()</code> 将 tensor 转换为对应的 List。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">torch_to_list=this_tensor.tolist()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;tensor:&#x27;</span>, this_tensor,<span class="string">&quot;\nlist:&quot;</span>,torch_to_list)</span><br></pre></td></tr></table></figure>
+<h2 id="Indexing-and-Slicing">Indexing and Slicing</h2>
+<p>tensor 也可以通过索引访问内部元素。<strong>不要违反索引规则，否则会引发错误。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A tensor for showing how the indexs work on tensors</span></span><br><span class="line"></span><br><span class="line">index_tensor = torch.tensor([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The value on index 0:&quot;</span>,index_tensor[<span class="number">0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The value on index 1:&quot;</span>,index_tensor[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The value on index 2:&quot;</span>,index_tensor[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The value on index 3:&quot;</span>,index_tensor[<span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The value on index 4:&quot;</span>,index_tensor[<span class="number">4</span>])</span><br></pre></td></tr></table></figure>
+<p>可以通过赋值的方式，修改 tensor 中的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tensor_sample = torch.tensor([<span class="number">20</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Change the value on the index 0 to 100</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Inital value on index 0:&quot;</span>, tensor_sample[<span class="number">0</span>])</span><br><span class="line">tensor_sample[<span class="number">0</span>] = <span class="number">100</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Modified tensor:&quot;</span>, tensor_sample)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>tensor 也可以支持 Slicing，可以通过该特性取得 tensor 的子集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Slice tensor_sample</span></span><br><span class="line"></span><br><span class="line">subset_tensor_sample = tensor_sample[<span class="number">1</span>:<span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Original tensor sample: &quot;</span>, tensor_sample)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The subset of tensor sample:&quot;</span>, subset_tensor_sample)</span><br></pre></td></tr></table></figure>
+<p>也可以对切片进行赋值，修改 tensor 的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Change the values on index 3 and index 4</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Inital value on index 3 and index 4:&quot;</span>, tensor_sample[<span class="number">3</span>:<span class="number">5</span>])</span><br><span class="line">tensor_sample[<span class="number">3</span>:<span class="number">5</span>] = torch.tensor([<span class="number">300.0</span>, <span class="number">400.0</span>])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Modified tensor:&quot;</span>, tensor_sample)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>可以通过一个指定索引的列表来获得指定索引的元素。如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Using variable to contain the selected index, and pass it to slice operation</span></span><br><span class="line"></span><br><span class="line">selected_indexes = [<span class="number">3</span>, <span class="number">1</span>]</span><br><span class="line">subset_tensor_sample = tensor_sample[selected_indexes]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The inital tensor_sample&quot;</span>, tensor_sample)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The subset of tensor_sample with the values on index 3 and 1: &quot;</span>, subset_tensor_sample)</span><br></pre></td></tr></table></figure>
+<p>可以通过该方式，修改指定索引的元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Using variable to assign the value to the selected indexes</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The inital tensor_sample&quot;</span>, tensor_sample)</span><br><span class="line">selected_indexes = [<span class="number">1</span>, <span class="number">3</span>]</span><br><span class="line">tensor_sample[selected_indexes] = <span class="number">100000</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Modified tensor with one value: &quot;</span>, tensor_sample)</span><br></pre></td></tr></table></figure>
+<h2 id="Tensor-Functions">Tensor Functions</h2>
+<p><code>tensor_obj.mean()</code> 返回 tensor 的均值，<code>tensor_obj.std()</code> 返回 tensor 的标准差。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">math_tensor = torch.tensor([<span class="number">1.0</span>, -<span class="number">1.0</span>, <span class="number">1</span>, -<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#Calculate the mean for math_tensor</span></span><br><span class="line"></span><br><span class="line">mean = math_tensor.mean()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The mean of math_tensor: &quot;</span>, mean)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Calculate the standard deviation for math_tensor</span></span><br><span class="line"></span><br><span class="line">standard_deviation = math_tensor.std()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;The standard deviation of math_tensor: &quot;</span>, standard_deviation)</span><br></pre></td></tr></table></figure>
+<p><code>tensor_obj.max()</code> 返回 tensor 中的最大元素，而 <code>tensor_obj.min()</code> 返回 tensor 中的最小元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">max_min_tensor = torch.tensor([<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Method for finding the maximum value in the tensor</span></span><br><span class="line"></span><br><span class="line">max_val = max_min_tensor.<span class="built_in">max</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Maximum number in the tensor: &quot;</span>, max_val)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Method for finding the minimum value in the tensor</span></span><br><span class="line"></span><br><span class="line">min_val = max_min_tensor.<span class="built_in">min</span>()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Minimum number in the tensor: &quot;</span>, min_val)</span><br></pre></td></tr></table></figure>
+<hr>
+<p>通过 torch_obj.linspace() 生成 tensor。</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Deep-Learning/">Deep Learning</a></div><div class="post_share"><div class="social-share" data-image="https://s2.loli.net/2022/06/24/6wRgSA3ZXnj7DNU.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/gh/overtrue/share.js@master/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/07/16/Travel-%E6%B9%84%E6%B4%B2%E5%B2%9B%E6%94%BB%E7%95%A5/"><img class="next-cover" src="https://s2.loli.net/2022/06/27/acorYj7qim9GFLl.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Travel | 湄洲岛攻略</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/06/29/DeepLearning-%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%B8%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" title="DeepLearning|神经网络与深度学习"><img class="cover" src="https://s2.loli.net/2022/06/27/v8ukjDOVl9MZSUY.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-29</div><div class="title">DeepLearning|神经网络与深度学习</div></div></a></div><div><a href="/2022/07/10/DeepLearning-%E6%94%B9%E5%96%84%E6%B7%B1%E5%B1%82%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%EF%BC%9A%E8%B6%85%E5%8F%82%E6%95%B0%E8%B0%83%E8%AF%95%E3%80%81%E6%AD%A3%E5%88%99%E5%8C%96%E4%BB%A5%E5%8F%8A%E4%BC%98%E5%8C%96/" title="DeepLearning | 改善深层神经网络：超参数调试、正则化以及优化"><img class="cover" src="https://s2.loli.net/2022/06/24/LQsaJWOZ31uUkA8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-10</div><div class="title">DeepLearning | 改善深层神经网络：超参数调试、正则化以及优化</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2022/06/24/OMpjngSGP17uFVY.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">William</div><div class="author-info__description">To find each other and feel, that is the purpose of LIFE.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">8</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/huoWilliam"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/huoWilliam" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:huo843435402@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Welcome to my blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">Torch Tensors in 1D</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Types-and-Shape"><span class="toc-number">2.1.</span> <span class="toc-text">Types and Shape</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Indexing-and-Slicing"><span class="toc-number">2.2.</span> <span class="toc-text">Indexing and Slicing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tensor-Functions"><span class="toc-number">2.3.</span> <span class="toc-text">Tensor Functions</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/01/Pytorch-One-Dimensional-Tensors/" title="Pytorch | One-Dimensional Tensors"><img src="https://s2.loli.net/2022/06/24/6wRgSA3ZXnj7DNU.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Pytorch | One-Dimensional Tensors"/></a><div class="content"><a class="title" href="/2022/08/01/Pytorch-One-Dimensional-Tensors/" title="Pytorch | One-Dimensional Tensors">Pytorch | One-Dimensional Tensors</a><time datetime="2022-08-01T04:00:07.000Z" title="发表于 2022-08-01 12:00:07">2022-08-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/16/Travel-%E6%B9%84%E6%B4%B2%E5%B2%9B%E6%94%BB%E7%95%A5/" title="Travel | 湄洲岛攻略"><img src="https://s2.loli.net/2022/06/27/acorYj7qim9GFLl.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Travel | 湄洲岛攻略"/></a><div class="content"><a class="title" href="/2022/07/16/Travel-%E6%B9%84%E6%B4%B2%E5%B2%9B%E6%94%BB%E7%95%A5/" title="Travel | 湄洲岛攻略">Travel | 湄洲岛攻略</a><time datetime="2022-07-16T13:15:21.000Z" title="发表于 2022-07-16 21:15:21">2022-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/10/Paper-Forecasting-across-time-series-databases-using-recurrent-neural-networks-on-groups-of-similar-series-A-clustering-approach/" title="Paper | Forecasting across time series databases using recurrent neural networks on groups of similar series: A clustering approach"><img src="https://s2.loli.net/2022/06/27/QoLakKeSCx2pMuW.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Paper | Forecasting across time series databases using recurrent neural networks on groups of similar series: A clustering approach"/></a><div class="content"><a class="title" href="/2022/07/10/Paper-Forecasting-across-time-series-databases-using-recurrent-neural-networks-on-groups-of-similar-series-A-clustering-approach/" title="Paper | Forecasting across time series databases using recurrent neural networks on groups of similar series: A clustering approach">Paper | Forecasting across time series databases using recurrent neural networks on groups of similar series: A clustering approach</a><time datetime="2022-07-10T13:57:04.000Z" title="发表于 2022-07-10 21:57:04">2022-07-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By William</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
