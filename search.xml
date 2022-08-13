@@ -1349,4 +1349,70 @@ L S T M_{\text {out }}^{\text {peephole }} &amp;=h_{t}
         <tag>Deep Learning</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Network | 一根网线共享网络</title>
+    <url>/2022/08/13/Network-%E4%B8%80%E6%A0%B9%E7%BD%91%E7%BA%BF%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>前言</h1>
+<blockquote>
+<p>参考链接：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/a08375279207">建立局域网，并用网线共享网络 - 简书 (jianshu.com)</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/398907636">通过一根网线共享网络给另一个电脑或者群辉上网 - 知乎 (zhihu.com)</a></li>
+</ul>
+<p>目的：将树莓派通过 Wifi 连接到家庭网络，但是在使用命令 sudo apt update 的时候，发现无法连接到服务器。经过查询，觉得可能是因为家里使用的是 PPPoE 网络，路由器的 MTU 与系统的默认 MTU 不一致。经过长时间折腾也解决不了，因此打算通过一条网线将树莓派与 PC 进行连接，实现网络的共享，尝试是否可以成功连接服务器。</p>
+</blockquote>
+<h1>过程</h1>
+<p>PC 通过 Wifi 连接网络，树莓派通过网线与 PC 连接，形成局域网，共享网络。网络架构图如下所示</p>
+<p><img src="image-20220813131623190.png" alt="image-20220813131623190"></p>
+<ol>
+<li>
+<p>在 PC 上进行如下操作：</p>
+<ul>
+<li>
+<p>打开控制面板——&gt; 网络和共享中心——&gt; 更改适配器设置</p>
+</li>
+<li>
+<p>选择无线网卡——&gt; 属性——&gt; 点击共享标签——&gt;开放共享网络权限，将网络通过以太网共享</p>
+<img src="image-20220813133504843.png" alt="image-20220813133504843" style="zoom:67%;" />
+</li>
+<li>
+<p>选择以太网网卡——&gt;属性——&gt;双击 <em>Internet 协议版本4 (TCP/IPv4)</em>，修改配置如下</p>
+<blockquote>
+<p>IP 地址等使用系统默认设置即可，<strong>首选DNS服务器选择 WLAN 中的 DNS 服务器 IP 地址，否则无法打开网页</strong>。</p>
+</blockquote>
+<img src="image-20220813133234694.png" alt="image-20220813133234694" style="zoom:67%;" />
+</li>
+</ul>
+</li>
+<li>
+<p>在树莓派上进行 IP 设置</p>
+<ul>
+<li>
+<p>修改文件 <code>/etc/netplan/50-cloud-init.yaml</code>，对以太网 IP，DNS服务器和默认网关进行设置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">network:</span></span><br><span class="line">      <span class="attr">ethernets:</span></span><br><span class="line">          <span class="attr">eth0:</span></span><br><span class="line">              <span class="attr">dhcp4:</span> <span class="literal">false</span>   <span class="comment"># 取消DHCP动态分配</span></span><br><span class="line">              <span class="attr">optional:</span> <span class="literal">true</span></span><br><span class="line">              <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.137</span><span class="number">.3</span><span class="string">/24</span>]  <span class="comment"># IP地址，应该与PC的IP处于同一网段</span></span><br><span class="line">              <span class="attr">routes:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="attr">to:</span> <span class="string">default</span></span><br><span class="line">                  <span class="attr">via:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.1</span>  <span class="comment"># 默认网关，即主机的IP地址</span></span><br><span class="line">              <span class="attr">nameservers:</span></span><br><span class="line">                <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.137</span><span class="number">.1</span>,<span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span>]  <span class="comment"># 首选DNS为主机的IP地址</span></span><br><span class="line">      <span class="attr">version:</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>更新配置：<code>$ sudo netplan apply</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>使用网线将 PC 与树莓派连接，分别 ping 对方，查看是否能够 ping 的通。如果能够互相 ping 通，那么局域网便构建成功了。两者便可以共享网络了。</p>
+<img src="image-20220813140952510.png" alt="image-20220813140952510" style="zoom:67%;" />
+<blockquote>
+<p>发现PC可以 ping 通树莓派，但是树莓派却 ping 不通 PC。那么大概率是防火墙导致，关闭PC的防火墙，便可以成功 ping 通了。</p>
+<p>如果发现无法成功共享网络，那么在 PC 端重启下以太网网卡即可。</p>
+</blockquote>
+<p><strong>使用该方法，虽然最终还是没解决问题，但是学到了一个没啥用的技术，哈哈哈哈</strong></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>network</category>
+      </categories>
+      <tags>
+        <tag>Raspberry</tag>
+        <tag>Network</tag>
+      </tags>
+  </entry>
 </search>
