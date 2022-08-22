@@ -1415,4 +1415,263 @@ L S T M_{\text {out }}^{\text {peephole }} &amp;=h_{t}
         <tag>Network</tag>
       </tags>
   </entry>
+  <entry>
+    <title>C++ | gcc的使用</title>
+    <url>/2022/08/18/C-gcc%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>前言</h1>
+<blockquote>
+<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/111500914">GCC编译过程（预处理-&gt;编译-&gt;汇编-&gt;链接） - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<h1>GCC简介</h1>
+<p>GCC（GNU Compiler Collection），即 GNU 编译器套件。它不仅可以用来编译 C 语言程序，还可以处理 C++、Go、Objective -C 等多种编译语言编写的程序。</p>
+<p>可以通过如下命令，查看系统上的 GCC 版本号。如果不显示版本号，说明目前还未安装 GCC 编译器。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -version</span><br></pre></td></tr></table></figure>
+<h1>gcc 与 g++ 的区别</h1>
+<p>gcc 和 g++ 都可以调用 GCC 编译器为我们编译文件。gcc 可以用来编译 C++ 程序，同样 g++ 也可以用来编译 C 语言程序。当它们还是有不同的：</p>
+<ol>
+<li>
+<p>gcc 可以根据文件后缀名，自行判断出当前程序的所用的编程语言，然后采用对应的方式进行编译。但是 g++ 不论文件后缀名是什么，一律按照 C++ 的方式编译该文件。</p>
+<blockquote>
+<p>不要觉得 C++ 兼容 C，所以可以无所顾忌地用 g++ 编译 C 语言程序。严格来说，C++ 标准和 C 语言标准的语法要求是有区别的。</p>
+</blockquote>
+</li>
+<li>
+<p>很多 C++ 程序都会调用某些标准库中现有的函数或者类对象，而单纯的 gcc 命令是无法自动链接这些标准库文件的。</p>
+<blockquote>
+<p>如果想使用 gcc 指令来编译执行 C++ 程序，需要在使用 gcc 指令时，手动为其添加 -lstdc++ -shared-libgcc 选项，表示 gcc 在编译 C++ 程序时可以链接必要的 C++ 标准库。如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -xc++ demo.cpp -lstdc++ -shared-libgcc</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ol>
+<p><strong>所以对于 C 语言程序的编译，我们应该使用 gcc 指令，而编译 C++ 程序则推荐使用 g++ 指令。</strong></p>
+<h1>GCC 自动识别的文件扩展名</h1>
+<p><img src="image-20220818232744233.png" alt="image-20220818232744233"></p>
+<p>GCC 可识别的文件扩展名不止上表这些。如果当前文件的扩展名和上表不符，只需要借助 -x 选项（小写）指明当前文件的类型即可。</p>
+<p>例如一个用 C 语言写的，但是没有后缀名的源文件 <code>demo</code>，可以用如下的方式编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">gcc -xc demo</span><br></pre></td></tr></table></figure>
+<h1>GCC -std 编译标准</h1>
+<p>C 语言和 C++ 有多个版本，不同版本支持的语法并不同。不同版本的 GCC 编译器，默认使用的标准版本也不尽相同。因此对于编译 C、C++ 程序来说，<strong>借助 -std 选项即可手动控制 GCC 编译程序时所使用的编译标准</strong>。使用方式如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -std=编译标准   <span class="comment"># c语言编译</span></span><br><span class="line">$ g++ -std=编译标准   <span class="comment"># c++编译</span></span><br></pre></td></tr></table></figure>
+<h1>GCC 编译 C/C++ 程序</h1>
+<p>GCC 编译，可以直接一步完成，但初学者可以分步完成，了解内部编译过程。</p>
+<h2 id="一步完成">一步完成</h2>
+<p>以 C 语言程序为例，使用如下指令可快速编译，获得对应的可执行程序。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc demo.c -o demo.exe</span><br></pre></td></tr></table></figure>
+<p>按下 Enter 回车键，由此 GCC 编译器就帮我们在当前目录下生成了对应的可执行文件，该文件的名称为 demo.exe。</p>
+<p>默认情况下，gcc 指令会一气呵成，直接将源代码转变为可执行代码，<strong>且不会保留产生的中间文件</strong>。</p>
+<blockquote>
+<p>-o 选项，用于指定要生成的文件名</p>
+</blockquote>
+<h2 id="分步完成">分步完成</h2>
+<p>无论是 C 还是 C++ 程序，其从源代码转变为可执行代码的过程，<strong>具体可分为 4 个过程，分别为预处理（Preprocessing）、编译（Compilation）、汇编（Assembly）和链接（Linking）</strong>。</p>
+<p><img src="v2-d6bfa8042150d2becd581266c907be17_720w.jpg" alt="img"></p>
+<h3 id="预处理，生成预编译文件">预处理，生成预编译文件</h3>
+<p>通过为 gcc 指令添加 -E 选项，即可控制 GCC 编译器仅对源代码做预处理操作。</p>
+<blockquote>
+<p>预处理操作，主要是进行头文件展开，宏替换，删除注释等工作</p>
+</blockquote>
+<p>默认情况下 gcc -E 指令只会将预处理操作的结果输出到屏幕上，并不会自动保存到某个文件。因此<strong>该指令往往会和 -o 选项连用，将结果导入到指令的文件中</strong>。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -E demo.c -o demo.i</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Linux 系统中通常用 “.i” 作为 C 语言程序预处理后所得文件的后缀名。</p>
+</blockquote>
+<h3 id="编译，生成汇编代码文件">编译，生成汇编代码文件</h3>
+<p>通过给 gcc 指令添加 -S 选项，即可令 GCC 编译器仅将指定文件加工至编译阶段【<strong>这也就意味着，gcc -S 指令可以操作预处理后的 .i 文件，也可以操作源代码文件</strong>】，并生成对应的<strong>汇编代码文件</strong>。</p>
+<blockquote>
+<p>这个阶段编译器主要做词法分析、语法分析、语义分析等，在检查无错误后后，把代码翻译成汇编语言。</p>
+</blockquote>
+<p>可以通过如下指令，对预处理文件进行编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -S demo.i -o demo.s</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Linux 系统中通常用 “.s” 作为 C 语言程序汇编代码文件的后缀名。</p>
+</blockquote>
+<h3 id="汇编，生成目标文件">汇编，生成目标文件</h3>
+<p>通过为 gcc 指令添加 -c 选项（注意是小写字母 c），即可让 GCC 编译器将指定文件加工至汇编阶段【<strong>这也就意味着，gcc -c 指令并非只能用于加工 .s 文件</strong>】，并生成相应的目标文件。<strong>所谓目标文件，其本质为二进制文件，但由于尚未经过链接操作，所以无法直接运行</strong>。</p>
+<blockquote>
+<p>这个阶段就是将之前生成的汇编代码文件做进一步转换，生成对应的机器指令。</p>
+</blockquote>
+<p>可以通过如下指令，对汇编代码文件进行编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc -c demo.s -o demo.o</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Linux 系统中通常用 “.o” 作为 C 语言程序目标文件的后缀名。</p>
+</blockquote>
+<h3 id="链接，生成可执行文件">链接，生成可执行文件</h3>
+<p>目标文件已经是二进制文件，与可执行文件的组织形式类似，只是有些函数和全局变量的地址还未找到，因此还无法执行。<strong>链接的作用就是找到这些目标地址，将所有的目标文件组织成一个可以执行的二进制文件</strong>。</p>
+<blockquote>
+<p>阶段要完成的工作，就是将同一项目中各源文件生成的目标文件以及程序中用到的库文件整合为一个可执行文件。</p>
+</blockquote>
+<p>可以使用如下指令执行链接操作，指令如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc demo.o -o demo.exe</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>gcc 会根据所给文件的后缀名 .o，自行判断出此类文件为目标文件，仅需要进行链接操作。</p>
+</blockquote>
+<h1>手动添加链接库</h1>
+<p>当使用 GCC 编译和链接程序时，GCC 默认会链接 libc.a 或者 <a href="http://libc.so">libc.so</a>【标准库】，但是对于其他的库（例如非标准库、第三方库等），就需要手动添加。<strong>CC 的 -l 选项（小写的 L）可以让我们手动添加链接库</strong>。</p>
+<p>以链接数学库 <code>libm.a</code> 为例。如果不手动链接该库的话，将无法成功编译使用了该库函数的文件。比如 main.c 中包含了使用了函数 <code>cos()</code>，则使用如下指令进行编译：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc main.c -o main.out -lm</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>数学库的文件名是 libm.a。前缀<code>lib</code>和后缀<code>.a</code>是标准的，<code>m</code>是基本名称，GCC 会在<code>-l</code>选项后紧跟着的基本名称的基础上自动添加这些前缀、后缀，本例中，基本名称为 m。</p>
+</blockquote>
+<h1>链接其他目录中的库</h1>
+<p>通常，GCC 会自动在标准库目录中搜索文件，例如 /usr/lib，如果想链接其它目录中的库，就得特别指明。有两种方式可以链接在 GCC 搜索路径以外的链接库：</p>
+<ol>
+<li>
+<p>使用<code>-L</code>选项，为 GCC 增加另一个搜索链接库的目录：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc main.c -o main.out -L/usr/lib -lm</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>把包括所需链接库的目录加到环境变量 LIBRARYPATH 中。</p>
+</li>
+</ol>
+<h1>gcc指令一次处理多个文件</h1>
+<p>一条 gcc（g++）指令往往可以一次性处理多个文件。</p>
+<p>举个例子，一个拥有 2 个源文件的 C 语言项目，myfun.c 文件用于存储一些功能函数，以方便直接在 main.c 文件中调用。可以使用如下指令，直接编译多个文件：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ gcc myfun.c main.c -o main.exe </span><br><span class="line"><span class="comment"># 也可以使用通配符</span></span><br><span class="line">$ gcc *.c -o main.c</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>programming</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>GCC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Project | fastDFS的安装与使用</title>
+    <url>/2022/08/13/Project-fastDFS%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>前言</h1>
+<blockquote>
+<p>资源链接：</p>
+<p>环境：在树莓派（arm架构）上安装 ubuntu 22.04 server</p>
+<p>目的：云盘项目需要使用 fastDFS 构建分布式文件系统来存储数据。所以本文探讨如何安装 fastDFS 与使用。</p>
+</blockquote>
+<h1>fastDFS简介</h1>
+<p>FastDFS 是一款开源的、分布式文件系统（Distributed File System），通过纯 C 实现。系统架构如图所示：</p>
+<img src="D:\Blog\Hexo\source\_posts\Project-fastDFS的安装与使用\image-20220814143323084.png" alt="image-20220814143323084" style="zoom:67%;" />
+<p>文件上传的过程如下</p>
+<ol>
+<li>首先客户端 client 发起对 FastDFS 的文件传输动作，是通过连接到某一台 Tracker 的指定端口来实现的；</li>
+<li>然后 Tracker 根据目前掌握的信息，来决定选择哪一台 storage，然后将该 storage 的地址等信息返回给 client。</li>
+<li>最后 client 通过这些信息连接到该 storage，进行 TCP 文件传输。</li>
+</ol>
+<p>FastDFS服务端有两个重要角色：<strong>tracker 和 storage</strong>：</p>
+<ul>
+<li>tracker：主要做调度工作，在访问上起到负载均衡的作用</li>
+<li>storage：存储文件，完成文件管理的所有功能</li>
+</ul>
+<blockquote>
+<p>tracker 和 storage 之间不直接通信，其基本的信息由配置文件在系统启动加载时获知。</p>
+</blockquote>
+<p>storage 可以分成多个 Group，<strong>每个 Group 里面的 storage 是相互备份的关系</strong>【Group 的存储能力由该 Group 内存储能力最小的 storage 决定，<strong>纵向扩展</strong>】。所以要提高文件系统的总体存储容量，需要添加新的 Group【<strong>横向扩展</strong>】。</p>
+<p>tracker 可以有多台，每台 tracker 之间是平等的，形成分布式，防止单点故障问题【<strong>高可靠性</strong>】。</p>
+<h1>安装 fastDFS</h1>
+<blockquote>
+<p>因为 fastDFS 是以 c 语言编写的，所以安装的前提是<strong>需要确保系统装有 gcc，make 等软件</strong>。</p>
+</blockquote>
+<ol>
+<li>
+<p>首先需要安装 fastDFS 依赖的库，即 libfastcommon。</p>
+<ul>
+<li>
+<p>解压，进入 libfastcommon-master 文件夹，执行如下命令，安装 libfastcommon</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./make.sh  <span class="comment"># 编译代码</span></span><br><span class="line">$ sudo ./make.sh install  <span class="comment"># 安装</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>动态库安装成功的路径为：<code>/usr/lib64</code>。由于系统不会在该目录下查找动态库，所以需要人为设置环境变量，或创建软链接</p>
+ <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置环境变量</span></span><br><span class="line">$ <span class="built_in">export</span> LD_LIBRARY_PATH=/usr/lib64/:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="comment"># 创建软连接(推荐)</span></span><br><span class="line"><span class="variable">$sudo</span> <span class="built_in">ln</span> -s /usr/lib64/libfastcommon.so /usr/lib/libfastcommon.so</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>依赖库安装完成后，便可以开始安装 fastDFS。</p>
+<ul>
+<li>
+<p>解压，进入 fastdfs-5.10 文件夹，执行如下命令，安装 fastDFS</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ./make.sh  <span class="comment"># 编译代码</span></span><br><span class="line">$ sudo ./make.sh install  <span class="comment"># 安装</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>可执行程序默认安装到 <code>/usr/bin</code> 下。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>验证是否成功安装，执行如下命令，如果成功显示 fastDFS 信息，说明安装成功</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ fdfs_test</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h1>配置</h1>
+<p>配置文件的存放目录为 <code>/etc/fdfs</code>。</p>
+<ol>
+<li>
+<p>首先配置 tracker</p>
+<ul>
+<li>
+<p>拷贝配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo <span class="built_in">cp</span> tracker.conf.sample tracker.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编辑配置文件：修改如下参数</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">bind_addr=192.168.2.140</span>  <span class="comment"># 确定tracker 所在服务器的 ip</span></span><br><span class="line"></span><br><span class="line"><span class="string">port=22122</span> <span class="comment"># 服务器端口：需要确保该端口未被占用</span></span><br><span class="line"></span><br><span class="line"><span class="string">base_path=/home/ubuntu/fastdfs/tracker</span> <span class="comment"># tracker 日志存放目录,该目录必须已经存在，可自行创建</span></span><br><span class="line"></span><br><span class="line"><span class="string">thread_stack_size</span> <span class="string">=</span> <span class="string">128KB</span> <span class="comment"># ARM 架构的，所以需要对 thread_stack_size 也进行修改，否则会报错</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>再配置 storage</p>
+<ul>
+<li>
+<p>拷贝配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo <span class="built_in">cp</span> storage.conf.sample storage.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编辑配置文件：修改如下参数</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line">     </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>最后配置 client</p>
+<ul>
+<li>
+<p>拷贝配置文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ sudo <span class="built_in">cp</span> client.conf.sample client.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>编辑配置文件：修改如下参数</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>project</category>
+      </categories>
+      <tags>
+        <tag>Netdisk</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Network | 计算机网络资料汇总</title>
+    <url>/2022/08/15/Network-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E8%B5%84%E6%96%99%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h1>博客</h1>
+<ol>
+<li>小林coding —— 图解网络：<a href="https://xiaolincoding.com/network/">图解网络</a></li>
+</ol>
+<h1>视频</h1>
+<ol>
+<li>中科大——计算机网络：<a href="https://www.bilibili.com/video/BV1JV411t7ow?spm_id_from=333.337.search-card.all.click&amp;vd_source=9864ca57df5e21a010aea7c0938e9cae">《计算机网络（自顶向下方法 第7版，James F.Kurose，Keith W.Ross）》课程_</a>
+<ul>
+<li>[ ] 前6章已经看完，习题还未完成</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>network</category>
+      </categories>
+      <tags>
+        <tag>Network</tag>
+        <tag>Resources</tag>
+      </tags>
+  </entry>
 </search>
