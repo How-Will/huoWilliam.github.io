@@ -3667,5 +3667,12 @@ L S T M_{\text {out }}^{\text {peephole }} &amp;=h_{t}
 <p>深度学习算法对<strong>随机错误表现出健壮性</strong>，但是对于系统错误【<strong>比如将所有白色的狗都标记为猫，那么之后分类器就会将所有白色的狗识别为猫</strong>】无法做到忽视。</p>
 </blockquote>
 ]]></content>
+      <categories>
+        <category>deep learning</category>
+      </categories>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Andrew Ng</tag>
+      </tags>
   </entry>
 </search>
